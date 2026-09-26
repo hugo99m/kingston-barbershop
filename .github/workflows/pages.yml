@@ -1,0 +1,41 @@
+name: Deploy to GitHub Pages
+
+# Сайт лежит в папке site/, а Pages из коробки умеет отдавать только корень
+# репозитория или /docs. Поэтому публикуем через workflow: он забирает site/
+# и раскладывает её на Pages при каждом пуше в main.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Забрать репозиторий
+        uses: actions/checkout@v4
+
+      - name: Настроить Pages
+        uses: actions/configure-pages@v5
+
+      - name: Упаковать папку site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Выложить
+        id: deployment
+        uses: actions/deploy-pages@v4
