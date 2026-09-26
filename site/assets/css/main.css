@@ -278,6 +278,10 @@ h1,h2,h3{margin:0;font-weight:300;text-wrap:balance}
   padding:24px;text-align:center;color:#5A5245;
 }
 .yc-note .lbl{color:#8A6C18}
+.yc-note span:not(.lbl){max-width:44ch;font-size:18px;line-height:1.55}
+.yc-note .btn{margin-top:14px}
+/* в демо-режиме форма не грузится, поэтому окно не растягиваем */
+.yc-modal--demo .yc-body{min-height:300px}
 
 /* ==========================================================================
    Атмосфера: зернистость, виньетка, появление секций

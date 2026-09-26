@@ -13,6 +13,21 @@
 (function (global) {
   'use strict';
 
+  /* --------------------------------------------------------------------------
+     ДЕМО-РЕЖИМ
+     Когда включён, кнопки записи показывают пояснение вместо формы: к YClients
+     не уходит ни одного запроса и случайно записаться нельзя. Нужен для
+     портфолио-версии, выложенной на публичный адрес.
+
+     По умолчанию включается сам на бесплатных хостингах, где обычно живёт
+     портфолио, и остаётся выключенным на localhost и на боевом домене —
+     то есть там, где запись должна работать по-настоящему.
+
+     Принудительно: var DEMO = true;  или  var DEMO = false;
+     -------------------------------------------------------------------------- */
+  var DEMO = /\.netlify\.app$|\.github\.io$|\.vercel\.app$|\.pages\.dev$/
+    .test(location.hostname);
+
   var CONFIG = {
     host: 'https://n131174.yclients.com', // поддомен филиала (Москва-Сити)
     companyId: 140204,                    // id компании в YClients
@@ -66,6 +81,8 @@
   var modal = null;
   var frame = null;
   var note = null;
+  var demo = null;
+  var demoLink = null;
   var extLink = null;
   var titleEl = null;
   var lastFocused = null;
@@ -73,7 +90,7 @@
 
   function buildModal() {
     modal = document.createElement('div');
-    modal.className = 'yc-modal';
+    modal.className = 'yc-modal' + (DEMO ? ' yc-modal--demo' : '');
     modal.hidden = true;
     modal.setAttribute('role', 'dialog');
     modal.setAttribute('aria-modal', 'true');
@@ -92,6 +109,11 @@
       '      <span class="lbl" data-ru="Загружаем запись" data-en="Loading booking">Загружаем запись</span>',
       '      <span data-ru="Форма YClients откроется через пару секунд." data-en="The YClients form will open in a moment.">Форма YClients откроется через пару секунд.</span>',
       '    </div>',
+      '    <div class="yc-note yc-demo" hidden>',
+      '      <span class="lbl" data-ru="Демонстрационная версия" data-en="Demo version">Демонстрационная версия</span>',
+      '      <span data-ru="Это портфолио-версия сайта — онлайн-запись в ней отключена, чтобы никто не записался по ошибке." data-en="This is a portfolio version of the site: booking is switched off here so that nobody books by mistake.">Это портфолио-версия сайта — онлайн-запись в ней отключена, чтобы никто не записался по ошибке.</span>',
+      '      <a class="btn" target="_blank" rel="noopener" href="#" data-ru="Открыть настоящую запись" data-en="Open the real booking">Открыть настоящую запись</a>',
+      '    </div>',
       '    <iframe class="yc-frame" title="Онлайн-запись Kingston Barbershop" allow="payment; geolocation" hidden></iframe>',
       '  </div>',
       '</div>'
@@ -100,7 +122,9 @@
     document.body.appendChild(modal);
 
     frame = modal.querySelector('.yc-frame');
-    note = modal.querySelector('.yc-note');
+    note = modal.querySelector('.yc-note:not(.yc-demo)');
+    demo = modal.querySelector('.yc-demo');
+    demoLink = demo.querySelector('.btn');
     extLink = modal.querySelector('.yc-ext');
     titleEl = modal.querySelector('.yc-title');
 
@@ -134,14 +158,25 @@
     var url = buildUrl(opts);
     lastFocused = document.activeElement;
 
-    // перезагружаем iframe только если адрес изменился
-    if (url !== currentUrl) {
-      currentUrl = url;
-      note.hidden = false;
+    if (DEMO) {
+      // форму не грузим вовсе — к YClients не уходит ни одного запроса
+      note.hidden = true;
       frame.hidden = true;
-      frame.src = url;
+      demo.hidden = false;
+      demoLink.href = url;
+    } else {
+      demo.hidden = true;
+      // перезагружаем iframe только если адрес изменился
+      if (url !== currentUrl) {
+        currentUrl = url;
+        note.hidden = false;
+        frame.hidden = true;
+        frame.src = url;
+      }
     }
+
     extLink.href = url;
+    extLink.hidden = DEMO; // в демо оставляем одну понятную дверь
 
     modal.hidden = false;
     document.body.classList.add('is-locked');
