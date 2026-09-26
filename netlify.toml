@@ -1,0 +1,28 @@
+# Сайт — статика без сборки, поэтому команда сборки не нужна:
+# Netlify просто раздаёт содержимое папки site/.
+
+[build]
+  publish = "site"
+  command = ""
+
+# Заголовки против кэширования разметки и кода: картинки пусть лежат в кэше
+# долго, а вот html/css/js должны обновляться сразу после деплоя.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/assets/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/assets/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/assets/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
