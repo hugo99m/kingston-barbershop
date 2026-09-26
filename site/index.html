@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kingston Barbershop — Москва-Сити</title>
+<meta name="description" content="Kingston Barbershop — клуб для настоящих джентльменов в башне «Город столиц», Москва-Сити. Стрижка, борода, приватные кабинеты, онлайн-запись.">
+<!-- Демо-версия: закрыта от поисковиков, чтобы не конкурировать с боевым
+     kingston-spa.com и не показывать в выдаче несверенные цены.
+     ПЕРЕД ЗАПУСКОМ В БОЙ — УДАЛИТЬ ЭТУ СТРОКУ. -->
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/img/crest.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Oswald:wght@200;300;400;500;700&display=swap">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+<!-- открывающая сцена; hidden по умолчанию — без JS страница видна сразу -->
+<div class="intro" id="intro" hidden>
+  <div class="intro-half intro-l"></div>
+  <div class="intro-half intro-r"></div>
+  <div class="intro-mark">
+    <img src="assets/img/crest.svg" alt="">
+    <span class="hair"></span>
+    <span class="lbl" data-ru="Клуб для настоящих джентльменов" data-en="A club for true gentlemen">Клуб для настоящих джентльменов</span>
+  </div>
+</div>
+
+<!-- тёплая зернистость и виньетка поверх всей страницы -->
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true"><span class="cursor-label"></span></div>
+
+<header class="site-head" id="siteHead">
+  <div class="wrap head-in">
+    <a class="brand" href="#top">
+      <img src="assets/img/crest.svg" alt="Герб Kingston Barbershop">
+      <span>Kingston</span>
+    </a>
+    <nav class="nav">
+      <a href="#services" data-ru="Услуги" data-en="Services">Услуги</a>
+      <a href="#rooms" data-ru="Кабинеты" data-en="Rooms">Кабинеты</a>
+      <a href="#club" data-ru="Клуб" data-en="Club">Клуб</a>
+      <a href="#masters" data-ru="Мастера" data-en="Barbers">Мастера</a>
+      <a href="#contacts" data-ru="Контакты" data-en="Contacts">Контакты</a>
+    </nav>
+    <div class="head-side">
+      <div class="lang">
+        <button type="button" id="langRu" aria-pressed="true">RU</button>
+        <i></i>
+        <button type="button" id="langEn" aria-pressed="false">EN</button>
+      </div>
+      <button type="button" class="btn head-cta" data-book data-ru="Записаться" data-en="Book">Записаться</button>
+      <button type="button" class="burger" id="burger" aria-label="Меню" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" hidden>
+  <button type="button" class="drawer-close" id="drawerClose" aria-label="Закрыть меню">&times;</button>
+  <a href="#services" data-ru="Услуги" data-en="Services">Услуги</a>
+  <a href="#rooms" data-ru="Кабинеты" data-en="Rooms">Кабинеты</a>
+  <a href="#club" data-ru="Клуб" data-en="Club">Клуб</a>
+  <a href="#masters" data-ru="Мастера" data-en="Barbers">Мастера</a>
+  <a href="#contacts" data-ru="Контакты" data-en="Contacts">Контакты</a>
+  <button type="button" class="btn" data-book data-ru="Записаться онлайн" data-en="Book online">Записаться онлайн</button>
+</div>
+
+<main id="top">
+
+  <!-- ================= ГЕРОЙ: три слоя глубины ================= -->
+  <section class="hero" id="hero">
+    <img class="hero-layer hero-bg" id="heroBg" src="assets/img/reception.jpg" alt="Ресепшн Kingston из чёрного мрамора">
+    <div class="hero-veil"></div>
+    <div class="hero-lamps" id="heroLamps" aria-hidden="true"></div>
+    <div class="hero-glow" id="heroGlow" aria-hidden="true"></div>
+    <div class="hero-word" id="heroWord"><span id="heroWordText">KINGSTON</span></div>
+    <img class="hero-layer hero-fg" id="heroFg" src="assets/img/reception.jpg" alt="">
+    <canvas class="hero-dust" id="heroDust" aria-hidden="true"></canvas>
+    <div class="hero-fade"></div>
+
+    <div class="hero-kicker wrap">
+      <span class="lbl" data-ru="Москва-Сити" data-en="Moscow City">Москва-Сити</span>
+      <span class="lbl" data-ru="Башня «Город столиц» · 2 этаж" data-en="Capital City Tower · 2nd floor">Башня «Город столиц» · 2 этаж</span>
+    </div>
+
+    <h1 class="visually-hidden">Kingston Barbershop — клуб для настоящих джентльменов в Москва-Сити</h1>
+
+    <div class="hero-foot">
+      <div class="wrap hero-foot-in">
+        <div class="hero-claim">
+          <span data-ru="Клуб для настоящих джентльменов" data-en="A club for true gentlemen">Клуб для настоящих джентльменов</span>
+          <span class="rule"></span>
+          <span class="lbl" style="color:var(--cream-55)" data-ru="Без лишней лирики" data-en="No unnecessary words">Без лишней лирики</span>
+        </div>
+        <div class="hero-act">
+          <button type="button" class="btn" data-book data-ru="Записаться онлайн" data-en="Book online">Записаться онлайн</button>
+          <a class="hero-tel" href="tel:+79686880888">+7 (968) 688-08-88</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ПОЛОСА: живой статус ================= -->
+  <section class="strip">
+    <div class="wrap strip-in">
+      <div class="hours" id="hours">
+        <span class="dot" id="hoursDot"></span>
+        <span class="lbl" id="hoursText" data-ru="Ежедневно 10:00 — 22:00" data-en="Daily 10:00 — 22:00">Ежедневно 10:00 — 22:00</span>
+      </div>
+      <div class="lbl" data-ru="Пресненская наб., 8с1" data-en="8 Presnenskaya emb., bld. 1">Пресненская наб., 8с1</div>
+      <div class="lbl" data-ru="5 кресел · 2 приватных кабинета" data-en="5 chairs · 2 private rooms">5 кресел · 2 приватных кабинета</div>
+    </div>
+  </section>
+
+  <!-- ================= УСЛУГИ ================= -->
+  <section class="sec" id="services">
+    <div class="wrap svc-grid">
+      <div class="svc-intro reveal">
+        <span class="lbl eyebrow" data-ru="Услуги" data-en="Services">Услуги</span>
+        <span class="hair"></span>
+        <h2 class="h2" data-ru="Стрижка|и борода" data-en="Haircut|and beard">Стрижка<br>и борода</h2>
+        <p class="lead" data-ru="Здесь знают все секреты мужских стрижек, правила бритья и ухода за бородой. Благодаря разным взглядам на работу каждого барбера отличает особый почерк." data-en="Here they know every secret of men's haircuts, the rules of shaving and beard care. Different views on the craft give each barber a signature hand.">Здесь знают все секреты мужских стрижек, правила бритья и ухода за бородой. Благодаря разным взглядам на работу каждого барбера отличает особый почерк.</p>
+        <button type="button" class="svc-figure" data-gallery="lounge.jpg,lounge2.jpg,chairs.jpg" data-gallery-title="Общий зал" aria-label="Смотреть общий зал">
+          <img src="assets/img/lounge.jpg" alt="Кресла и витрина ухода в зоне ожидания" loading="lazy">
+          <span class="zoom lbl" data-ru="Смотреть зал" data-en="View the hall">Смотреть зал</span>
+        </button>
+      </div>
+
+      <div class="svc-list reveal">
+        <div class="svc-row">
+          <span class="svc-name">
+            <b data-ru="Стрижка шейвером" data-en="Shaver haircut">Стрижка шейвером</b>
+            <i data-ru="60 минут" data-en="60 min">60 минут</i>
+          </span>
+          <span class="svc-price">3 300 ₽</span>
+          <button type="button" class="svc-book" data-book="service" data-ru="Записаться →" data-en="Book →">Записаться →</button>
+        </div>
+        <div class="svc-row">
+          <span class="svc-name">
+            <b data-ru="Стрижка ножницами" data-en="Scissors haircut">Стрижка ножницами</b>
+            <i data-ru="30 минут" data-en="30 min">30 минут</i>
+          </span>
+          <span class="svc-price">2 800 ₽</span>
+          <button type="button" class="svc-book" data-book="service" data-ru="Записаться →" data-en="Book →">Записаться →</button>
+        </div>
+        <div class="svc-row">
+          <span class="svc-name">
+            <b data-ru="Моделирование бороды" data-en="Beard sculpting">Моделирование бороды</b>
+            <i data-ru="45 минут" data-en="45 min">45 минут</i>
+          </span>
+          <span class="svc-price">3 000 ₽</span>
+          <button type="button" class="svc-book" data-book="service" data-ru="Записаться →" data-en="Book →">Записаться →</button>
+        </div>
+        <div class="svc-row">
+          <span class="svc-name">
+            <b data-ru="Королевское бритьё" data-en="Royal shaving">Королевское бритьё</b>
+            <i data-ru="45 минут" data-en="45 min">45 минут</i>
+          </span>
+          <span class="svc-price">4 000 ₽</span>
+          <button type="button" class="svc-book" data-book="service" data-ru="Записаться →" data-en="Book →">Записаться →</button>
+        </div>
+        <div class="svc-row">
+          <span class="svc-name">
+            <b data-ru="СПА London Grooming" data-en="London Grooming SPA">СПА London Grooming</b>
+            <i data-ru="30 минут" data-en="30 min">30 минут</i>
+          </span>
+          <span class="svc-price">4 000 ₽</span>
+          <button type="button" class="svc-book" data-book="service" data-ru="Записаться →" data-en="Book →">Записаться →</button>
+        </div>
+        <div class="svc-row">
+          <span class="svc-name">
+            <b data-ru="Детская стрижка до 10 лет" data-en="Children's haircut, up to 10">Детская стрижка до 10 лет</b>
+            <i data-ru="60 минут" data-en="60 min">60 минут</i>
+          </span>
+          <span class="svc-price">4 500 ₽</span>
+          <button type="button" class="svc-book" data-book="service" data-ru="Записаться →" data-en="Book →">Записаться →</button>
+        </div>
+        <button type="button" class="svc-more" data-book="service">
+          <span data-ru="Весь прайс" data-en="Full price list">Весь прайс</span><i></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ПОКА ВЫ ЖДЁТЕ ================= -->
+  <section class="amen">
+    <div class="wrap amen-in reveal">
+      <span class="lbl eyebrow" data-ru="Пока вы ждёте" data-en="While you wait">Пока вы ждёте</span>
+      <ul class="amen-list">
+        <li data-ru="Кофе и чай" data-en="Coffee and tea">Кофе и чай</li>
+        <li data-ru="Горячительные напитки" data-en="Something stronger">Горячительные напитки</li>
+        <li data-ru="Wi-Fi" data-en="Wi-Fi">Wi-Fi</li>
+        <li data-ru="Витрина ухода" data-en="Grooming display">Витрина ухода</li>
+        <li data-ru="Кресла у окна" data-en="Armchairs by the window">Кресла у окна</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= КАБИНЕТЫ ================= -->
+  <section class="sec rooms" id="rooms">
+    <div class="wrap">
+      <div class="rooms-head reveal">
+        <div class="stack">
+          <span class="lbl eyebrow" data-ru="Кабинеты" data-en="Rooms">Кабинеты</span>
+          <span class="hair"></span>
+          <h2 class="h2" data-ru="Приватно" data-en="In private">Приватно</h2>
+        </div>
+        <p class="lead" data-ru="После перепланировки в клубе появились закрытые кабинеты и отдельный кабинет маникюра и педикюра." data-en="After the rebuild the club has private rooms and a dedicated manicure and pedicure studio.">После перепланировки в клубе появились закрытые кабинеты и отдельный кабинет маникюра и педикюра.</p>
+      </div>
+
+      <div class="cards reveal">
+        <article class="card">
+          <button type="button" class="card-fig" data-gallery="vip.jpg,vip2.jpg" data-gallery-title="VIP-кабинет" aria-label="Смотреть VIP-кабинет">
+            <img src="assets/img/vip.jpg" alt="VIP-кабинет: тёмный орех, лепнина, белый мрамор" loading="lazy">
+            <span class="zoom lbl" data-ru="Смотреть" data-en="View">Смотреть</span>
+          </button>
+          <div class="card-body">
+            <div class="card-top">
+              <b data-ru="VIP-кабинет" data-en="VIP room">VIP-кабинет</b>
+              <span>7,2 м²</span>
+            </div>
+            <p data-ru="Отдельное кресло, мини-бар, лепнина и белый мрамор. Стрижка без посторонних глаз." data-en="Its own chair, a mini bar, mouldings and white marble. A haircut away from everyone.">Отдельное кресло, мини-бар, лепнина и белый мрамор. Стрижка без посторонних глаз.</p>
+          </div>
+        </article>
+        <article class="card">
+          <button type="button" class="card-fig" data-gallery="room2.jpg" data-gallery-title="Кабинет 2" aria-label="Смотреть кабинет 2">
+            <img src="assets/img/room2.jpg" alt="Кабинет 2: бордовая стена с золотым постером" loading="lazy">
+            <span class="zoom lbl" data-ru="Смотреть" data-en="View">Смотреть</span>
+          </button>
+          <div class="card-body">
+            <div class="card-top">
+              <b data-ru="Кабинет 2" data-en="Room 2">Кабинет 2</b>
+              <span>4,2 м²</span>
+            </div>
+            <p data-ru="Бордо, золотой постер и собственная мойка. Камерный формат на одного гостя." data-en="Burgundy, a gilded poster and its own basin. An intimate format for one guest.">Бордо, золотой постер и собственная мойка. Камерный формат на одного гостя.</p>
+          </div>
+        </article>
+        <article class="card">
+          <button type="button" class="card-fig" data-gallery="manicure.jpg,manicure2.jpg" data-gallery-title="Кабинет маникюра" aria-label="Смотреть кабинет маникюра">
+            <img src="assets/img/manicure.jpg" alt="Кабинет маникюра с гербом на бордовой стене" loading="lazy">
+            <span class="zoom lbl" data-ru="Смотреть" data-en="View">Смотреть</span>
+          </button>
+          <div class="card-body">
+            <div class="card-top">
+              <b data-ru="Маникюр" data-en="Manicure">Маникюр</b>
+              <span>8,3 м²</span>
+            </div>
+            <p data-ru="Маникюр и педикюр на подиуме — новое направление московского клуба." data-en="Manicure and pedicure on a raised podium — a new service for the Moscow club.">Маникюр и педикюр на подиуме — новое направление московского клуба.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ЦИТАТА ================= -->
+  <section class="band" data-parallax-band>
+    <img src="assets/img/chairs.jpg" alt="Ряд барберских кресел у мойки" loading="lazy">
+    <div class="veil"></div>
+    <div class="moulding moulding-1"></div>
+    <div class="moulding moulding-2"></div>
+    <div class="band-in">
+      <q data-ru="К нам приходят не только за стрижкой, но и за общением с единомышленниками" data-en="People come here not only for a haircut, but for the company of like-minded men">К нам приходят не только за стрижкой, но и за общением с единомышленниками</q>
+      <span class="rule" style="width:60px"></span>
+    </div>
+  </section>
+
+  <!-- ================= КЛУБ ================= -->
+  <section class="club" id="club">
+    <div class="club-frame"></div>
+    <div class="club-frame inner"></div>
+    <div class="wrap club-grid">
+      <div class="club-copy reveal">
+        <span class="lbl eyebrow" data-ru="Клуб" data-en="The club">Клуб</span>
+        <span class="hair"></span>
+        <h2 class="h2" data-ru="Больше,|чем стрижка" data-en="More than|a haircut">Больше,<br>чем стрижка</h2>
+        <p class="lead" data-ru="Кофе и напитки, витрина ухода, кресла для ожидания и приветливые администраторы. Kingston — место, куда возвращаются не только за формой бороды." data-en="Coffee and drinks, a grooming display, armchairs to wait in and welcoming staff. Kingston is a place people return to for more than the shape of a beard.">Кофе и напитки, витрина ухода, кресла для ожидания и приветливые администраторы. Kingston — место, куда возвращаются не только за формой бороды.</p>
+        <button type="button" class="btn btn-ghost" data-book data-ru="Записаться в клуб" data-en="Book a visit">Записаться в клуб</button>
+      </div>
+      <div class="club-shot" data-parallax-band>
+        <img src="assets/img/facade.jpg" alt="Витрина Kingston со стороны атриума" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ИНТЕРЬЕР ================= -->
+  <section class="gal" id="interior">
+    <div class="wrap gal-head reveal">
+      <span class="lbl eyebrow" data-ru="Интерьер" data-en="Interior">Интерьер</span>
+      <span class="hair"></span>
+      <h2 class="h2" data-ru="Бордо, орех|и матовое золото" data-en="Burgundy, walnut|and matte gold">Бордо, орех<br>и матовое золото</h2>
+      <p class="lead" data-ru="Панели с золотым молдингом, тёмный орех на стенах, чёрно-белая плитка в шахматку под ногами. Свет собран из точечных ламп и латунных бра — каждое кресло стоит в своём световом пятне." data-en="Panelling with gilded mouldings, dark walnut on the walls, chequered tile underfoot. The light is built from spots and brass sconces — every chair sits in its own pool of light.">Панели с золотым молдингом, тёмный орех на стенах, чёрно-белая плитка в шахматку под ногами. Свет собран из точечных ламп и латунных бра — каждое кресло стоит в своём световом пятне.</p>
+    </div>
+    <div class="gal-row" id="galRow">
+      <button type="button" class="gal-item" data-gallery-index="0" aria-label="Смотреть: кресло у зеркала">
+        <img src="assets/img/workplace.jpg" alt="Кресло у зеркала в золотой раме" loading="lazy">
+      </button>
+      <button type="button" class="gal-item" data-gallery-index="1" aria-label="Смотреть: кресла под люстрой">
+        <img src="assets/img/lounge2.jpg" alt="Кресла под люстрой у бордовой стены" loading="lazy">
+      </button>
+      <button type="button" class="gal-item" data-gallery-index="2" aria-label="Смотреть: рабочий ряд и мойки">
+        <img src="assets/img/chairs.jpg" alt="Мойки и рабочий ряд" loading="lazy">
+      </button>
+      <button type="button" class="gal-item" data-gallery-index="3" aria-label="Смотреть: ресепшн">
+        <img src="assets/img/reception.jpg" alt="Ресепшн из чёрного мрамора" loading="lazy">
+      </button>
+      <button type="button" class="gal-item" data-gallery-index="4" aria-label="Смотреть: санузел">
+        <img src="assets/img/wc.jpg" alt="Санузел: графит, латунь и мрамор" loading="lazy">
+      </button>
+      <button type="button" class="gal-item" data-gallery-index="5" aria-label="Смотреть: витрина">
+        <img src="assets/img/facade.jpg" alt="Витрина со стороны атриума" loading="lazy">
+      </button>
+    </div>
+  </section>
+
+  <!-- ================= БЕГУЩАЯ СТРОКА ================= -->
+  <section class="marq" aria-hidden="true">
+    <div class="marq-track">
+      <span>Клуб для настоящих джентльменов</span><span class="sep">◆</span>
+      <span>Без лишней лирики</span><span class="sep">◆</span>
+      <span>Москва-Сити</span><span class="sep">◆</span>
+      <span>Ежедневно с 10:00 до 22:00</span><span class="sep">◆</span>
+      <span>Клуб для настоящих джентльменов</span><span class="sep">◆</span>
+      <span>Без лишней лирики</span><span class="sep">◆</span>
+      <span>Москва-Сити</span><span class="sep">◆</span>
+      <span>Ежедневно с 10:00 до 22:00</span><span class="sep">◆</span>
+    </div>
+  </section>
+
+  <!-- ================= МАСТЕРА ================= -->
+  <section class="sec masters" id="masters">
+    <div class="wrap">
+      <div class="masters-head reveal">
+        <div class="stack">
+          <span class="lbl eyebrow" data-ru="Мастера" data-en="Barbers">Мастера</span>
+          <span class="hair"></span>
+          <h2 class="h2" data-ru="У каждого|свой почерк" data-en="Every hand|has a signature">У каждого<br>свой почерк</h2>
+        </div>
+        <button type="button" data-book="master" data-ru="Выбрать мастера →" data-en="Choose a barber →">Выбрать мастера →</button>
+      </div>
+
+      <div class="team reveal">
+        <div class="person">
+          <div class="shot"><img src="assets/img/crest.svg" alt=""><span class="lbl" data-ru="Фото — съёмка после открытия" data-en="Photo — shoot after opening">Фото — съёмка после открытия</span></div>
+          <b data-ru="Анастасия" data-en="Anastasia">Анастасия</b>
+          <em data-ru="Грациозный барбер, твёрдая рука" data-en="A graceful barber with a steady hand">Грациозный барбер, твёрдая рука</em>
+          <button type="button" class="book-link" data-book="service" data-master="anastasia" data-ru="Записаться" data-en="Book">Записаться</button>
+        </div>
+        <div class="person">
+          <div class="shot"><img src="assets/img/crest.svg" alt=""><span class="lbl" data-ru="Фото — съёмка после открытия" data-en="Photo — shoot after opening">Фото — съёмка после открытия</span></div>
+          <b data-ru="Сабир" data-en="Sabir">Сабир</b>
+          <em data-ru="Узбекистан и пять лет в Москве" data-en="Uzbekistan and five years in Moscow">Узбекистан и пять лет в Москве</em>
+          <button type="button" class="book-link" data-book="service" data-master="sabir" data-ru="Записаться" data-en="Book">Записаться</button>
+        </div>
+        <div class="person">
+          <div class="shot"><img src="assets/img/crest.svg" alt=""><span class="lbl" data-ru="Фото — съёмка после открытия" data-en="Photo — shoot after opening">Фото — съёмка после открытия</span></div>
+          <b data-ru="Дастан" data-en="Dastan">Дастан</b>
+          <em data-ru="Девять лет в профессии" data-en="Nine years in the trade">Девять лет в профессии</em>
+          <button type="button" class="book-link" data-book="service" data-master="dastan" data-ru="Записаться" data-en="Book">Записаться</button>
+        </div>
+        <div class="person">
+          <div class="shot"><img src="assets/img/crest.svg" alt=""><span class="lbl" data-ru="Фото — съёмка после открытия" data-en="Photo — shoot after opening">Фото — съёмка после открытия</span></div>
+          <b data-ru="Ранар" data-en="Ranar">Ранар</b>
+          <em data-ru="Виртуозно владеет опасным лезвием" data-en="A virtuoso with the straight razor">Виртуозно владеет опасным лезвием</em>
+          <button type="button" class="book-link" data-book="service" data-master="ranar" data-ru="Записаться" data-en="Book">Записаться</button>
+        </div>
+        <!-- Али, Мухаммад-Али и Бахруз есть в YClients, но их id не подтверждены,
+             поэтому кнопка открывает экран выбора мастера. Как появятся id —
+             добавить в MASTERS в yclients.js и поставить сюда data-master. -->
+        <div class="person">
+          <div class="shot"><img src="assets/img/crest.svg" alt=""><span class="lbl" data-ru="Фото — съёмка после открытия" data-en="Photo — shoot after opening">Фото — съёмка после открытия</span></div>
+          <b data-ru="Али" data-en="Ali">Али</b>
+          <em data-ru="[Описание мастера]" data-en="[Barber bio]">[Описание мастера]</em>
+          <button type="button" class="book-link" data-book="master" data-ru="Записаться" data-en="Book">Записаться</button>
+        </div>
+        <div class="person">
+          <div class="shot"><img src="assets/img/crest.svg" alt=""><span class="lbl" data-ru="Фото — съёмка после открытия" data-en="Photo — shoot after opening">Фото — съёмка после открытия</span></div>
+          <b data-ru="Мухаммад-Али" data-en="Muhammad-Ali">Мухаммад-Али</b>
+          <em data-ru="[Описание мастера]" data-en="[Barber bio]">[Описание мастера]</em>
+          <button type="button" class="book-link" data-book="master" data-ru="Записаться" data-en="Book">Записаться</button>
+        </div>
+        <div class="person">
+          <div class="shot"><img src="assets/img/crest.svg" alt=""><span class="lbl" data-ru="Фото — съёмка после открытия" data-en="Photo — shoot after opening">Фото — съёмка после открытия</span></div>
+          <b data-ru="Бахруз" data-en="Bakhruz">Бахруз</b>
+          <em data-ru="[Описание мастера]" data-en="[Barber bio]">[Описание мастера]</em>
+          <button type="button" class="book-link" data-book="master" data-ru="Записаться" data-en="Book">Записаться</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ЗАПИСЬ ================= -->
+  <section class="sec" id="book">
+    <div class="wrap cta reveal">
+      <span class="lbl eyebrow" data-ru="Запись" data-en="Booking">Запись</span>
+      <span class="hair"></span>
+      <h2 class="h2" data-ru="Выберите мастера и время" data-en="Choose your barber and time">Выберите мастера и время</h2>
+      <p class="lead" style="text-align:center;max-width:46ch" data-ru="Онлайн-запись, история визитов и бонусная карта — в приложении и на сайте." data-en="Online booking, visit history and the loyalty card — in the app and on the site.">Онлайн-запись, история визитов и бонусная карта — в приложении и на сайте.</p>
+      <button type="button" class="btn" data-book data-ru="Записаться онлайн" data-en="Book online">Записаться онлайн</button>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= ПОДВАЛ ================= -->
+<footer class="foot" id="contacts">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col foot-brand">
+        <img src="assets/img/crest.svg" alt="Герб Kingston Barbershop">
+        <span class="lbl" style="color:var(--cream)">Kingston</span>
+        <span class="lbl" style="color:var(--cream-55)">Barbershop · Москва</span>
+      </div>
+      <div class="foot-col">
+        <span class="lbl eyebrow" data-ru="Клуб" data-en="Club">Клуб</span>
+        <a href="#services" data-ru="Услуги" data-en="Services">Услуги</a>
+        <a href="#rooms" data-ru="Кабинеты" data-en="Rooms">Кабинеты</a>
+        <a href="#interior" data-ru="Интерьер" data-en="Interior">Интерьер</a>
+        <a href="#masters" data-ru="Мастера" data-en="Barbers">Мастера</a>
+        <a href="https://o1413.yclients.com/loyalty" target="_blank" rel="noopener" data-ru="Сертификаты" data-en="Gift cards">Сертификаты</a>
+      </div>
+      <div class="foot-col">
+        <span class="lbl eyebrow" data-ru="Контакты" data-en="Contacts">Контакты</span>
+        <a href="tel:+79686880888">+7 (968) 688-08-88</a>
+        <span data-ru="Пресненская наб., 8с1 · 2 этаж" data-en="8 Presnenskaya emb., bld. 1 · 2nd floor">Пресненская наб., 8с1 · 2 этаж</span>
+        <span data-ru="Ежедневно 10:00 — 22:00" data-en="Daily 10:00 — 22:00">Ежедневно 10:00 — 22:00</span>
+        <button type="button" data-book data-ru="Онлайн-запись" data-en="Online booking">Онлайн-запись</button>
+      </div>
+      <div class="foot-col">
+        <span class="lbl eyebrow" data-ru="Соцсети" data-en="Social">Соцсети</span>
+        <div class="socials">
+          <a class="lbl" style="color:var(--cream-70)" href="https://t.me/Kingston_barbershop" target="_blank" rel="noopener">Telegram</a>
+          <a class="lbl" style="color:var(--cream-70)" href="https://wa.me/79686880888" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="lbl" style="color:var(--cream-70)" href="https://www.instagram.com/kingston_barber/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bar">
+      <span class="lbl" style="color:var(--cream-55)" data-ru="Интерьер — ARCHITEQUE Design Bureau" data-en="Interior — ARCHITEQUE Design Bureau">Интерьер — ARCHITEQUE Design Bureau</span>
+      <em data-ru="Без лишней лирики" data-en="No unnecessary words">Без лишней лирики</em>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/yclients.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/atmosphere.js"></script>
+</body>
+</html>
